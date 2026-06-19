@@ -1,0 +1,31 @@
+@MobSquashLeaderboard_HostAddress = http://localhost:5049
+
+GET {{MobSquashLeaderboard_HostAddress}}/scores/
+Accept: application/json
+
+###
+
+POST {{MobSquashLeaderboard_HostAddress}}/score
+Content-Type: application/json
+
+{
+  "score": 100
+}
+
+###
+
+POST {{MobSquashLeaderboard_HostAddress}}/score
+Content-Type: application/json
+
+{
+  "score": 250
+}
+
+###
+
+POST {{MobSquashLeaderboard_HostAddress}}/score
+Content-Type: application/json
+
+{
+  "score": 75
+}
