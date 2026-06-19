@@ -1,20 +1,21 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-List<int> scores = new();
+List<ScoreEntry> scores = new();
 
-app.MapPost("/score", (ScoreData data) =>
+app.MapPost("/score", (ScoreEntry data) =>
 {
-    scores.Add(data.score);
-    Console.WriteLine("Score received: " + data.score);
-    return scores;
+    scores.Add(data);
+    Console.WriteLine($"Score received: {data.playerName} - {data.score}");
 });
 
-app.MapGet("/scores", () =>
+app.MapGet("/leaderboard", () =>
 {
-    return scores;
+    return scores
+        .OrderByDescending(s => s.score)
+        .Take(10);
 });
 
 app.Run();
 
-record ScoreData(string playerName, int score);
+record ScoreEntry(string playerName, int score);
