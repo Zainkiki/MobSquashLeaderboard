@@ -13,7 +13,7 @@ app.MapGet("/leaderboard", () =>
 {
     return scores
         .OrderByDescending(s => s.score)
-        .Take(10);
+        .Take(5);
 });
 
 app.Run();
